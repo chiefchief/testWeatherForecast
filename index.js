@@ -1,5 +1,5 @@
 import React from "react";
-import { AppRegistry } from "react-native";
+import { AppRegistry, StatusBar } from "react-native";
 import { Provider } from "react-redux";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import Wrapper from "containers/wrapper";
@@ -28,15 +28,15 @@ const Navigator = createStackNavigator(
   }
 );
 
-const Weather = createAppContainer(Navigator);
+const Forecast = createAppContainer(Navigator);
 
 const App = () => (
-  //   <Weather ref={navigatorRef => NavigationService.setRoot(navigatorRef)} />
   <Provider store={store}>
     <Wrapper>
-      <Weather ref={navigatorRef => route.setRoot(navigatorRef)} />
+      <StatusBar hidden={true} />
+      <Forecast ref={navigatorRef => route.setRoot(navigatorRef)} />
     </Wrapper>
   </Provider>
 );
 
-AppRegistry.registerComponent("weather", () => App);
+AppRegistry.registerComponent("forecast", () => App);

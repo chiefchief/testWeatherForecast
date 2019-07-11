@@ -4,7 +4,8 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
-  FlatList
+  FlatList,
+  Keyboard
 } from "react-native";
 import { getLatLng } from "services/weather";
 import { connect } from "react-redux";
@@ -17,6 +18,7 @@ import styles from "./styles";
 function Search({ address, forecast, dispatch }) {
   const [city, setCity] = useState(address.city);
   const getCoords = async city => {
+    Keyboard.dismiss();
     await getLatLng(city).then(result => {
       dispatch(setAddress({ city, ...result }));
     });

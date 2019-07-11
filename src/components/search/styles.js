@@ -27,6 +27,6 @@ export default StyleSheet.create({
   },
   flat: {
     flex: 1,
-    marginTop: 20
+    marginVertical: 20
   }
 });

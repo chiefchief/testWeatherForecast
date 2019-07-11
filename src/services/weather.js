@@ -1,9 +1,7 @@
 const FORECAST_KEY = "0a7ec726c8554766ae0141220191007";
-
-const MAP_KEY = "AIzaSyDzp3Nl4Uu5HeJFG_p546ZEWD8vsfcNSPU";
-
 const ONE_MORE_KEY = "669fe115da39422181f7ada405f54e1f";
-export function getWeather(lat, lng) {
+
+export const getWeather = async (lat, lng) => {
   const URL =
     "https://api.apixu.com/v1/current.json?key=" +
     FORECAST_KEY +
@@ -11,12 +9,19 @@ export function getWeather(lat, lng) {
     lat +
     "," +
     lng;
-  fetch(URL)
+  let obj = {};
+  await fetch(URL)
     .then(res => res.json())
-    .then(function(data) {
-      console.log(data, "GOT DATA");
+    .then(data => {
+      obj = {
+        city: `${data.location.name}, ${data.location.country}`,
+        lat: data.location.lat,
+        lng: data.location.lon,
+        temperature: data.current.feelslike_c
+      };
     });
-}
+  return obj;
+};
 
 export const getForecast = async (lat, lng) => {
   const URL = `https://api.apixu.com/v1/forecast.json?key=${FORECAST_KEY}&q=${lat},${lng}&days=7`;
