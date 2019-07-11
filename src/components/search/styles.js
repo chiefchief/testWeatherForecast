@@ -26,6 +26,7 @@ export default StyleSheet.create({
     borderRadius: 25
   },
   flat: {
+    flex: 1,
     marginTop: 20
   }
 });
